@@ -9,6 +9,7 @@ import {Button} from 'react-native-elements'
 import CourseList from './components/CourseList'
 import ModuleList from './components/ModuleList'
 import LessonList from './components/LessonList'
+import TopicList from './components/TopicList'
 import WidgetList from './components/WidgetList'
 
 
@@ -42,6 +43,7 @@ const App = createStackNavigator({
     CourseList,
     ModuleList,
     LessonList,
+    TopicList,
     WidgetList
 });
 

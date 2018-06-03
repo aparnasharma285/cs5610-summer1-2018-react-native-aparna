@@ -25,6 +25,8 @@ class LessonList extends Component {
             <View style={{padding: 15}}>
                 {this.state.lessons.map((lesson, index) => (
                     <ListItem
+                        onPress={() => this.props.navigation
+                            .navigate("TopicList", {lessonId: lesson.id})}
                         key={index}
                         title={lesson.title}/>
                 ))}
