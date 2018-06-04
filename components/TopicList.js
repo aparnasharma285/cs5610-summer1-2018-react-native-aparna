@@ -24,6 +24,8 @@ class TopicList extends Component {
             <View style={{padding: 15}}>
                 {this.state.topics.map((topic, index) => (
                     <ListItem
+                        onPress={() => this.props.navigation
+                            .navigate("WidgetList", {topicId: topic.id})}
                         key={index}
                         title={topic.title}/>
                 ))}
