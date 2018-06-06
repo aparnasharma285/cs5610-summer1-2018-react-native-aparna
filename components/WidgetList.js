@@ -111,7 +111,7 @@ class WidgetList extends Component {
                             key={index}
                             title={assignment.name}
                             onPress={() => this.props.navigation
-                                .navigate("AssignmentEditor", {topicId: topicId, widgetId: assignment.id})}/>
+                                .navigate("AssignmentWidget", {topicId: this.state.topicId,widgetId: assignment.id})}/>
                     ))}
                 </View>
 
@@ -140,7 +140,7 @@ class WidgetList extends Component {
                             key={index}
                             title={exam.name}
                             onPress={() => this.props.navigation
-                                .navigate("ExamEditor", {topicId: topicId, widgetId: exam.id})}/>
+                                .navigate("ExamWidget", {topicId: this.state.topicId, widgetId: exam.id})}/>
                     ))}
                 </View>
             </ScrollView>

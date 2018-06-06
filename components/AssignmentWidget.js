@@ -9,6 +9,7 @@ class AssignmentWidget extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            name:'',
             title: '',
             description: '',
             points: '',
@@ -31,6 +32,7 @@ class AssignmentWidget extends Component {
             {
                 body: JSON.stringify({
                     'id':this.state.widgetId,
+                    'name': this.state.name,
                     'title': this.state.title,
                     'description': this.state.description,
                     'points': this.state.points
@@ -55,6 +57,7 @@ class AssignmentWidget extends Component {
 
         this.findAssignmentById(widgetId).then((assignment) => this.setState({
             title: assignment.title,
+            name: assignment.name,
             points: assignment.points,
             description: assignment.description
 
@@ -74,6 +77,14 @@ class AssignmentWidget extends Component {
 
         return (
             <ScrollView>
+                <FormLabel>Name</FormLabel>
+                <FormInput value={this.state.name} onChangeText={
+                    text => this.updateForm({name: text})
+                }/>
+                <FormValidationMessage>
+                    Name is required
+                </FormValidationMessage>
+
                 <FormLabel>Title</FormLabel>
                 <FormInput value={this.state.title} onChangeText={
                     text => this.updateForm({title: text})
@@ -106,7 +117,7 @@ class AssignmentWidget extends Component {
 
                 <Button backgroundColor="green" color="white" title="Save"
                         onPress={() => this.updateAssignment(this.state.widgetId)}/>
-
+                <Text>&nbsp;</Text>
                 <Button backgroundColor="red" color="white" title="Cancel" onPress={() => this.props.navigation
                     .navigate("WidgetList", {topicId: this.state.topicId})}/>
 
@@ -116,16 +127,16 @@ class AssignmentWidget extends Component {
                     <Text h4> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
                 </View>
 
-                <Text>{this.state.description}</Text>
+                <Text style={{padding:15}}>{this.state.description}</Text>
 
                 <View>
-                <Text h4>Essay Answer</Text>
+                <Text h4 style={{padding:15}}>Essay Answer</Text>
                 <TextInput editable={false} multiline={true} numberOfLines={3}/>
                 </View>
-                <Text h4>Upload File</Text>
+                <Text h4 style={{padding:15}}>Upload File</Text>
                 <FormInput style={{border: 2}}/>
 
-                <Text h4> Submit a link</Text>
+                <Text style={{padding:15}} h4> Submit a link</Text>
             </ScrollView>
         )
     }
