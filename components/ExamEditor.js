@@ -3,15 +3,15 @@ import {View, Alert} from 'react-native'
 import {Text, ListItem} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-class WidgetEditor extends Component{
-    static navigationOptions = {title: 'WidgetEditor'}
+class ExamtEditor extends Component{
+    static navigationOptions = {title: 'AssignmentEditor'}
 
     render(){
 
         return(
-            <Text>Yo</Text>
+            <Text>Yo exam</Text>
         )
     }
 }
 
-export default WidgetEditor
+export default ExamtEditor
