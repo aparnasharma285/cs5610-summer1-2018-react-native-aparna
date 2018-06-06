@@ -45,6 +45,7 @@ class WidgetList extends Component {
         fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/widget/WID").replace('WID', widgetId), {
             method: 'delete'
         }).then(this.findAllAssignment(this.state.topicId))
+            .then(this.findAllExams(this.state.topicId))
 
     }
 
@@ -62,7 +63,7 @@ class WidgetList extends Component {
                     style={{marginLeft: 20}}
                     type='font-awesome'
                     onPress={() => this.props.navigation
-                        .navigate('WidgetEditor')}
+                        .navigate('AssignmentEditor')}
                 />
                 </Text>
                 <View style={{padding: 15}}>
@@ -91,7 +92,7 @@ class WidgetList extends Component {
                     style={{marginLeft: 20}}
                     type='font-awesome'
                     onPress={() => this.props.navigation
-                        .navigate('WidgetEditor')}
+                        .navigate('AssignmentEditor')}
                 /></Text>
                 <View style={{padding: 15}}>
                     {this.state.exams.map((exam, index) => (
@@ -103,7 +104,7 @@ class WidgetList extends Component {
                                 size={20}
                                 style={{paddingRight: 20}}
                                 type='font-awesome'
-                                onPress={() => this.deleteWidget.bind(this, exam.id)}
+                                onPress={() => this.deleteWidget(exam.id)}
                             />}
                             key={index}
                             title={exam.name}/>
