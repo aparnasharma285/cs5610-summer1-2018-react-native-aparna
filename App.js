@@ -10,6 +10,10 @@ import TopicList from './components/TopicList'
 import WidgetList from './components/WidgetList'
 import AssignmentWidget from './components/AssignmentWidget'
 import ExamWidget from './components/ExamWidget'
+import EssayQuestionWidget from './components/EssayQuestionWidget'
+import FillInTheBlanksQuestionWidget from './components/FillInTheBlanksQuestionWidget'
+import MultipleChoiceQuestionWidget from './components/MultipleChoiceQuestionWidget'
+import TrueOrFalseQuestionWidget from './components/TrueOrFalseQuestionWidget'
 
 
 class Home extends React.Component {
@@ -43,7 +47,12 @@ const App = createStackNavigator({
     TopicList,
     WidgetList,
     AssignmentWidget,
-    ExamWidget
+    ExamWidget,
+    EssayQuestionWidget,
+    FillInTheBlanksQuestionWidget,
+    MultipleChoiceQuestionWidget,
+    TrueOrFalseQuestionWidget
+
 });
 
 export default App;

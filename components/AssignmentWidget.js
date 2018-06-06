@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, TextInput, ScrollView, Alert,Keyboard} from 'react-native'
+import {View, TextInput, ScrollView, Alert, Keyboard} from 'react-native'
 import {FormLabel, FormInput, FormValidationMessage, Button, Text, Card} from 'react-native-elements'
 
 
@@ -9,7 +9,7 @@ class AssignmentWidget extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            name:'',
+            name: '',
             title: '',
             description: '',
             points: '',
@@ -18,7 +18,7 @@ class AssignmentWidget extends Component {
 
         }
 
-        this.updateAssignment= this.updateAssignment.bind(this);
+        this.updateAssignment = this.updateAssignment.bind(this);
     }
 
     updateForm(newState) {
@@ -28,10 +28,10 @@ class AssignmentWidget extends Component {
     updateAssignment() {
 
 
-         fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/assignment/" + this.state.widgetId),
+        fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/assignment/" + this.state.widgetId),
             {
                 body: JSON.stringify({
-                    'id':this.state.widgetId,
+                    'id': this.state.widgetId,
                     'name': this.state.name,
                     'title': this.state.title,
                     'description': this.state.description,
@@ -41,8 +41,8 @@ class AssignmentWidget extends Component {
                 method: 'PUT'
             })
             .then(this.findAssignmentById(this.state.widgetId))
-             .then(Alert.alert("Changes saved"))
-             .then(this.props.navigation.navigate("WidgetList", {topicId: this.state.topicid}))
+            .then(Alert.alert("Changes saved"))
+            .then(this.props.navigation.navigate("WidgetList", {topicId: this.state.topicid}))
 
     }
 
@@ -122,25 +122,29 @@ class AssignmentWidget extends Component {
                 <Button backgroundColor="red" color="white" title="Cancel" onPress={() => this.props.navigation
                     .navigate("WidgetList", {topicId: this.state.topicId})}/>
 
-                <Text h3 style={{padding:15}}>Preview</Text>
+                <Card style={{padding: 15}}>
 
-                <View style={{flexDirection: 'row', padding:15}}>
-                    <Text h4> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
-                </View>
+                    <Text h3 style={{padding: 15}}>Preview</Text>
+                    <View style={{flexDirection: 'row', padding: 15}}>
+                        <Text h4> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
+                    </View>
 
-                <Text style={{padding:15}}>{this.state.description}</Text>
+                    <Text style={{padding: 15}}>{this.state.description}</Text>
 
-                <View>
-                <Text h4 style={{padding:15}}>Essay Answer</Text>
-                <TextInput editable={false} multiline={true} numberOfLines={5} style={{borderRadius:4, borderWidth:1, marginLeft:10, marginRight:10}}/>
-                </View>
-                <Text h4 style={{padding:15}}>Upload File</Text>
-                <FormInput style={{border: 2}}/>
+                    <View>
+                        <Text h4 style={{padding: 15}}>Essay Answer</Text>
+                        <TextInput editable={false} multiline={true} numberOfLines={5}
+                                   style={{borderRadius: 4, borderWidth: 1, marginLeft: 10, marginRight: 10}}/>
+                    </View>
+                    <Text h4 style={{padding: 15}}>Upload File</Text>
+                    <FormInput editable={false} style={{border: 2}}/>
 
-                <Text style={{padding:15}} h4> Submit a link</Text>
+                    <Text editable={false} style={{padding: 15}} h4> Submit a link</Text>
+                    <FormInput editable={false} style={{border: 2, marginBottom: 10}}/>
+                </Card>
             </ScrollView>
         )
     }
 }
 
-            export default AssignmentWidget
+export default AssignmentWidget

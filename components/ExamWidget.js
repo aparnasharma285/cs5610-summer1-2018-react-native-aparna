@@ -41,6 +41,25 @@ class ExamWidget extends Component {
 
     }
 
+
+    componentWillReceiveProps(newProps){
+
+        const {navigation} = this.props;
+        const topicId = navigation.getParam("topicId")
+        const widgetId = navigation.getParam("widgetId")
+
+        this.setState({
+            topicId: topicId,
+            widgetId: widgetId
+        })
+
+        this.findEssayQuestions(widgetId);
+        this.findBlankQuestions(widgetId);
+        this.findChoicesQuestions(widgetId);
+        this.findTrueFalseQuestions(widgetId);
+
+    }
+
     findEssayQuestions(widgetId) {
 
         return fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/WID/essay").replace('WID',widgetId))
@@ -180,9 +199,8 @@ class ExamWidget extends Component {
                             />}
                             key={index}
                             title={question.title}
-                            onPress={() => {
-                                Alert.alert("Next Page")
-                            }}/>
+                            onPress={() => this.props.navigation
+                                .navigate("EssayQuestionWidget", {widgetId: this.state.widgetId, questionId: question.id})}/>
                     ))}
                 </View>
 
@@ -210,9 +228,8 @@ class ExamWidget extends Component {
                             />}
                             key={index}
                             title={question.title}
-                            onPress={() => {
-                                Alert.alert("Next Page")
-                            }}/>
+                            onPress={() => this.props.navigation
+                                .navigate("MultipleChoiceQuestionWidget", {widgetId: this.state.widgetId, questionId: question.id})}/>
                     ))}
                 </View>
 
@@ -240,9 +257,8 @@ class ExamWidget extends Component {
                             />}
                             key={index}
                             title={question.title}
-                            onPress={() => {
-                                Alert.alert("Next Page")
-                            }}/>
+                            onPress={() => this.props.navigation
+                                .navigate("FillInTheBlanksQuestionWidget", {widgetId: this.state.widgetId, questionId: question.id})}/>
                     ))}
                 </View>
 
@@ -270,9 +286,8 @@ class ExamWidget extends Component {
                             />}
                             key={index}
                             title={question.title}
-                            onPress={() => {
-                                Alert.alert("Next Page")
-                            }}/>
+                            onPress={() => this.props.navigation
+                                .navigate("TrueOrFalseQuestionWidget", {widgetId: this.state.widgetId, questionId: question.id})}/>
                     ))}
                 </View>
             </ScrollView>
