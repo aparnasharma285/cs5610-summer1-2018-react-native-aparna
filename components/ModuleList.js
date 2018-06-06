@@ -8,7 +8,7 @@ class ModuleList extends Component {
         super(props)
         this.state = {
             modules: [],
-            courseId: 1
+            courseId: ''
         }
     }
     componentDidMount() {
@@ -16,7 +16,7 @@ class ModuleList extends Component {
         this.setState({
             courseId: courseId
         })
-        fetch('https://cs5610-java-server-aparna.herokuapp.com/api/course/' + courseId + '/module')
+        fetch('https://cs5610-react-native-aparna.herokuapp.com/api/course/' + courseId + '/module')
             .then(response => (response.json()))
             .then(modules => this.setState({modules: modules}))
     }

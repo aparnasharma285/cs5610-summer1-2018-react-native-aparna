@@ -15,7 +15,7 @@ class TopicList extends Component {
         const {navigation} = this.props;
         const lessonId = navigation.getParam("lessonId")
 
-        fetch("https://cs5610-java-server-aparna.herokuapp.com/api/lesson/"+lessonId+"/topic")
+        fetch("https://cs5610-react-native-aparna.herokuapp.com/api/lesson/"+lessonId+"/topic")
             .then(response => (response.json()))
             .then(topics => this.setState({topics}))
     }
