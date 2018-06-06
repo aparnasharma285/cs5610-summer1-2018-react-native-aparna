@@ -82,10 +82,10 @@ class ExamWidget extends Component {
 
         fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/questions/QID").replace('QID', questionId), {
             method: 'delete'
-        }).then(this.findEssayQuestions(widgetId))
-            .then(this.findBlankQuestions(widgetId))
-            .then(this.findChoicesQuestions(widgetId))
-            .then(this.findTrueFalseQuestions(widgetId))
+        }).then(this.findEssayQuestions(this.state.widgetId))
+            .then(this.findBlankQuestions(this.state.widgetId))
+            .then(this.findChoicesQuestions(this.state.widgetId))
+            .then(this.findTrueFalseQuestions(this.state.widgetId))
     }
 
     createEssayQuestion() {
