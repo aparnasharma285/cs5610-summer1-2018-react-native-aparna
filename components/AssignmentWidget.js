@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {View, TextInput, ScrollView, Alert,Keyboard} from 'react-native'
 import {FormLabel, FormInput, FormValidationMessage, Button, Text, Card} from 'react-native-elements'
-import Icon from 'react-native-vector-icons/FontAwesome'
+
 
 class AssignmentWidget extends Component {
     static navigationOptions = {title: 'AssignmentWidget'}
@@ -41,7 +41,8 @@ class AssignmentWidget extends Component {
                 method: 'PUT'
             })
             .then(this.findAssignmentById(this.state.widgetId))
-             .then(Alert.alert("Changes Saved"))
+             .then(Alert.alert("Changes saved"))
+             .then(this.props.navigation.navigate("WidgetList", {topicId: this.state.topicid}))
 
     }
 
@@ -131,7 +132,7 @@ class AssignmentWidget extends Component {
 
                 <View>
                 <Text h4 style={{padding:15}}>Essay Answer</Text>
-                <TextInput editable={false} multiline={true} numberOfLines={3}/>
+                <TextInput editable={false} multiline={true} numberOfLines={5} style={{borderRadius:4, borderWidth:1, marginLeft:10, marginRight:10}}/>
                 </View>
                 <Text h4 style={{padding:15}}>Upload File</Text>
                 <FormInput style={{border: 2}}/>

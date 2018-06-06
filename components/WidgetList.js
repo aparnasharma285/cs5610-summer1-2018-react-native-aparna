@@ -29,6 +29,16 @@ class WidgetList extends Component {
         this.findAllExams(topicId);
     }
 
+    componentWillReceiveProps(newProps){
+        const {navigation} = this.props;
+        const topicId = navigation.getParam("topicId")
+        this.setState({
+            topicId: topicId
+        })
+        this.findAllAssignment(topicId);
+        this.findAllExams(topicId);
+    }
+
     findAllAssignment(topicId) {
 
         return fetch("https://cs5610-react-native-aparna.herokuapp.com/api/topic/" + topicId + "/assignment")
