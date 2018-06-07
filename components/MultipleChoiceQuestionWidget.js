@@ -87,7 +87,7 @@ class MultipleChoiceQuestionWidget extends Component {
         })
 
         return (
-            <ScrollView style={{padding: 10, marginBottom: 10}}>
+            <ScrollView>
 
                 <FormLabel>Title</FormLabel>
                 <FormInput value={this.state.title} onChangeText={
@@ -137,10 +137,10 @@ class MultipleChoiceQuestionWidget extends Component {
 
                 <FormLabel>Correct Option</FormLabel>
                 <Card>
-                <Picker selectedValue={this.state.correctOption}
-                        onValueChange={(itemIndex) => this.updateForm({correctOption: itemIndex})}>
-                    {pickerItems}
-                </Picker>
+                    <Picker selectedValue={this.state.correctOption}
+                            onValueChange={(itemIndex) => this.updateForm({correctOption: itemIndex})}>
+                        {pickerItems}
+                    </Picker>
                 </Card>
                 <Text>&nbsp;</Text>
                 <Button backgroundColor="green" color="white" title="Save"
@@ -152,29 +152,34 @@ class MultipleChoiceQuestionWidget extends Component {
                 <Card style={{padding: 15, marginBottom: 20}}>
 
                     <Text h3 style={{padding: 15}}>Preview</Text>
-                    <View style={{flexDirection: 'row', flex: 1}}>
-                        <Text h4 style={{flex: 1, flexWrap: 'wrap'}}>{this.state.title}</Text><Text
-                        h4>{this.state.points}pts</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{width: 250}}>
+                            <Text h4 style={{flex: 1, flexWrap: 'wrap'}}> {this.state.title} </Text>
+                        </View>
+                        <View style={{width: 100}}>
+                            <Text h4> {this.state.points}pts</Text>
+                        </View>
                     </View>
-
                     <Text style={{padding: 15}}>{this.state.description}</Text>
 
-                    <View style={{padding: 15, marginBottom: 15}}>
+                        <View style={{padding: 15, marginBottom: 15}}>
 
-                    </View>
+                        </View>
 
-                    <Card>
-                        <RadioForm
-                            radio_props={radioItems}
-                            initial={0}
-                            style={{alignItems: 'flex-start'}}
-                            onPress={() => {Alert.alert("Read only Field !")}}/>
-                    </Card>
+                        <Card>
+                            <RadioForm
+                                radio_props={radioItems}
+                                initial={0}
+                                style={{alignItems: 'flex-start'}}
+                                onPress={() => {
+                                    Alert.alert("Read only Field !")
+                                }}/>
+                        </Card>
                 </Card>
-                <View style={{padding:15}}></View>
+                <View style={{padding: 15}}></View>
             </ScrollView>
-        )
+    )
     }
-}
+    }
 
-export default MultipleChoiceQuestionWidget
+    export default MultipleChoiceQuestionWidget

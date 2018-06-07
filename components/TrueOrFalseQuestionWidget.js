@@ -81,7 +81,7 @@ class TrueOrFalseQuestionWidget extends Component {
             {label: 'False', value: 1}
         ];
         return (
-            <ScrollView style={{padding: 10, marginBottom: 10}}>
+            <ScrollView>
 
                 <FormLabel>Title</FormLabel>
                 <FormInput value={this.state.title} onChangeText={
@@ -132,8 +132,13 @@ class TrueOrFalseQuestionWidget extends Component {
                 <Card style={{padding: 15, marginBottom: 10}}>
 
                     <Text h3 style={{padding: 15}}>Preview</Text>
-                    <View style={{flexDirection: 'row', padding: 15}}>
-                        <Text h4 style={{flex: 1, flexWrap: 'wrap'}}> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{width: 250}}>
+                        <Text h4 style={{flex: 1, flexWrap: 'wrap'}}> {this.state.title} </Text>
+                        </View>
+                        <View style={{width: 100}}>
+                        <Text h4> {this.state.points}pts</Text>
+                        </View>
                     </View>
 
                     <Text style={{padding: 15}}>{this.state.description}</Text>
