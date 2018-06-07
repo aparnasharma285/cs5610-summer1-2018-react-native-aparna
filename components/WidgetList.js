@@ -48,7 +48,7 @@ class WidgetList extends Component {
 
     findAllExams(topicId) {
 
-        return fetch("http://192.168.0.9:8080/api/topic/" + topicId + "/exam")
+        return fetch("https://cs5610-react-native-aparna.herokuapp.com/api/topic/" + topicId + "/exam")
             .then(response => (response.json()))
             .then(exams => this.setState({exams}))
     }

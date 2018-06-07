@@ -73,6 +73,8 @@ class FillInTheBlanksQuestionWidget extends Component {
 
     render() {
 
+        var equation = this.state.variables.replace(/\[.*?]/,'<FormInput></FormInput>');
+
         return (
             <ScrollView>
 
@@ -80,9 +82,6 @@ class FillInTheBlanksQuestionWidget extends Component {
                 <FormInput value={this.state.title} onChangeText={
                     text => this.updateForm({title: text})
                 }/>
-                <FormValidationMessage>
-                    Title is required
-                </FormValidationMessage>
 
 
                 <FormLabel>Points</FormLabel>
@@ -92,34 +91,26 @@ class FillInTheBlanksQuestionWidget extends Component {
                     onChangeText={
                         text => this.updateForm({points: text})
                     }/>
-                <FormValidationMessage>
-                    points is required
-                </FormValidationMessage>
+
 
 
                 <FormLabel>Description</FormLabel>
                 <FormInput value={this.state.description} onChangeText={
                     text => this.updateForm({description: text})
                 }/>
-                <FormValidationMessage>
-                    Description is required
-                </FormValidationMessage>
+
 
                 <FormLabel>Instructions</FormLabel>
                 <FormInput value={this.state.instructions} onChangeText={
                     text => this.updateForm({instructions: text})
                 }/>
-                <FormValidationMessage>
-                    Instruction is required
-                </FormValidationMessage>
+
 
                 <FormLabel>Variables</FormLabel>
                 <FormInput value={this.state.variables} onChangeText={
                     text => this.updateForm({variables: text})
                 }/>
-                <FormValidationMessage>
-                    Variables is required
-                </FormValidationMessage>
+
 
 
                 <Button backgroundColor="green" color="white" title="Save"
@@ -141,6 +132,7 @@ class FillInTheBlanksQuestionWidget extends Component {
                     </View>
                     <Text style={{padding: 15}}>{this.state.description}</Text>
 
+                    {equation}
                 </Card>
                 <View style={{padding:15}}></View>
             </ScrollView>

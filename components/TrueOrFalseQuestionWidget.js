@@ -87,10 +87,6 @@ class TrueOrFalseQuestionWidget extends Component {
                 <FormInput value={this.state.title} onChangeText={
                     text => this.updateForm({title: text})
                 }/>
-                <FormValidationMessage>
-                    Title is required
-                </FormValidationMessage>
-
 
                 <FormLabel>Points</FormLabel>
                 <FormInput
@@ -99,26 +95,17 @@ class TrueOrFalseQuestionWidget extends Component {
                     onChangeText={
                         text => this.updateForm({points: text})
                     }/>
-                <FormValidationMessage>
-                    points is required
-                </FormValidationMessage>
-
 
                 <FormLabel>Description</FormLabel>
                 <FormInput value={this.state.description} onChangeText={
                     text => this.updateForm({description: text})
                 }/>
-                <FormValidationMessage>
-                    Description is required
-                </FormValidationMessage>
 
                 <FormLabel>Instructions</FormLabel>
                 <FormInput value={this.state.instructions} onChangeText={
                     text => this.updateForm({instructions: text})
                 }/>
-                <FormValidationMessage>
-                    Instruction is required
-                </FormValidationMessage>
+
 
                 <CheckBox onPress={() => this.updateForm({isTrue: !this.state.isTrue})}
                           checked={this.state.isTrue} title='Check if Answer is True'/>

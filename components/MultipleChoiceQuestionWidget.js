@@ -93,10 +93,6 @@ class MultipleChoiceQuestionWidget extends Component {
                 <FormInput value={this.state.title} onChangeText={
                     text => this.updateForm({title: text})
                 }/>
-                <FormValidationMessage>
-                    Title is required
-                </FormValidationMessage>
-
 
                 <FormLabel>Points</FormLabel>
                 <FormInput
@@ -105,35 +101,25 @@ class MultipleChoiceQuestionWidget extends Component {
                     onChangeText={
                         text => this.updateForm({points: text})
                     }/>
-                <FormValidationMessage>
-                    points is required
-                </FormValidationMessage>
-
 
                 <FormLabel>Description</FormLabel>
                 <FormInput value={this.state.description} onChangeText={
                     text => this.updateForm({description: text})
                 }/>
-                <FormValidationMessage>
-                    Description is required
-                </FormValidationMessage>
+
 
                 <FormLabel>Instructions</FormLabel>
                 <FormInput value={this.state.instructions} onChangeText={
                     text => this.updateForm({instructions: text})
                 }/>
-                <FormValidationMessage>
-                    Instruction is required
-                </FormValidationMessage>
+
 
                 <FormLabel>Options</FormLabel>
                 <TextInput style={{marginLeft: 10}} multiline={true} numberOfLines={6} value={this.state.options}
                            onChangeText={
                                text => this.updateForm({options: text})
                            }/>
-                <FormValidationMessage>
-                    Options is required
-                </FormValidationMessage>
+
 
                 <FormLabel>Correct Option</FormLabel>
                 <Card>

@@ -22,7 +22,6 @@ class EssayQuestionWidget extends Component {
 
     }
 
-
     updateForm(newState) {
         this.setState(newState)
     }
@@ -78,9 +77,6 @@ class EssayQuestionWidget extends Component {
                 <FormInput value={this.state.title} onChangeText={
                     text => this.updateForm({title: text})
                 }/>
-                <FormValidationMessage>
-                    Title is required
-                </FormValidationMessage>
 
 
                 <FormLabel>Points</FormLabel>
@@ -90,26 +86,17 @@ class EssayQuestionWidget extends Component {
                     onChangeText={
                         text => this.updateForm({points: text})
                     }/>
-                <FormValidationMessage>
-                    points is required
-                </FormValidationMessage>
 
 
                 <FormLabel>Description</FormLabel>
                 <FormInput value={this.state.description} onChangeText={
                     text => this.updateForm({description: text})
                 }/>
-                <FormValidationMessage>
-                    Description is required
-                </FormValidationMessage>
 
                 <FormLabel>Instructions</FormLabel>
                 <FormInput value={this.state.instructions} onChangeText={
                     text => this.updateForm({instructions: text})
                 }/>
-                <FormValidationMessage>
-                    Instruction is required
-                </FormValidationMessage>
 
 
                 <Button backgroundColor="green" color="white" title="Save"
@@ -123,7 +110,7 @@ class EssayQuestionWidget extends Component {
                     <Text h3 style={{padding: 15}}>Preview</Text>
                     <View style={{flexDirection: 'row'}}>
                         <View style={{width: 250}}>
-                        <Text h4 style={{flex: 1, flexWrap: 'wrap'}}> {this.state.title} </Text>
+                            <Text h4 style={{flex: 1, flexWrap: 'wrap'}}> {this.state.title} </Text>
                         </View><View style={{width: 100}}><Text
                         h4> {this.state.points}pts</Text></View>
                     </View>
