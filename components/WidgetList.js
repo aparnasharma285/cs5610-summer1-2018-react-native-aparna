@@ -29,7 +29,7 @@ class WidgetList extends Component {
         this.findAllExams(topicId);
     }
 
-    componentWillReceiveProps(newProps){
+    componentWillReceiveProps(newProps) {
         const {navigation} = this.props;
         const topicId = navigation.getParam("topicId")
         this.setState({
@@ -62,7 +62,7 @@ class WidgetList extends Component {
     }
 
     createAssignment() {
-         fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/topic/TID/assignment").replace('TID', this.state.topicId),
+        fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/topic/TID/assignment").replace('TID', this.state.topicId),
             {
                 body: JSON.stringify(
                     {
@@ -78,7 +78,7 @@ class WidgetList extends Component {
     }
 
     createExam() {
-         fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/topic/TID/exam").replace('TID', this.state.topicId),
+        fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/topic/TID/exam").replace('TID', this.state.topicId),
             {
                 body: JSON.stringify({
                     "id": this.state.exams.length + 1,
@@ -95,17 +95,22 @@ class WidgetList extends Component {
         return (
             <ScrollView style={{padding: 15}}>
 
-                <Text h3>Assignments <Icon
-                    raised
-                    reverse
-                    name='plus-circle'
-                    color='#517fa4'
-                    size={50}
-                    style={{marginLeft: 20}}
-                    type='font-awesome'
-                    onPress={() => this.createAssignment()}
-                />
-                </Text>
+                <View style={{flexDirection: 'row'}}>
+                    <View style={{width: 250}}>
+                        <Text h3>Assignments </Text>
+                    </View>
+                    <View style={{width: 100}}>
+                        <Icon
+                            raised
+                            reverse
+                            name='plus-circle'
+                            color='#517fa4'
+                            size={50}
+                            style={{marginLeft: 20}}
+                            type='font-awesome'
+                            onPress={() => this.createAssignment()}
+                        /></View></View>
+
                 <View style={{padding: 15}}>
                     {this.state.assignments.map((assignment, index) => (
                         <ListItem
@@ -121,20 +126,24 @@ class WidgetList extends Component {
                             key={index}
                             title={assignment.name}
                             onPress={() => this.props.navigation
-                                .navigate("AssignmentWidget", {topicId: this.state.topicId,widgetId: assignment.id})}/>
+                                .navigate("AssignmentWidget", {topicId: this.state.topicId, widgetId: assignment.id})}/>
                     ))}
                 </View>
+                <View style={{flexDirection: 'row', marginTop:10}}>
+                    <View style={{width: 250}}>
+                        <Text h3>Exams </Text>
+                    </View>
+                    <View style={{width: 100}}>
+                        <Icon
+                            raised
+                            reverse
+                            name='plus-circle'
+                            color='#517fa4'
+                            size={50}
+                            style={{marginLeft: 20}}
+                            type='font-awesome'
+                            onPress={() => this.createExam()}/></View></View>
 
-                <Text h3>Exams <Icon
-                    raised
-                    reverse
-                    name='plus-circle'
-                    color='#517fa4'
-                    size={50}
-                    style={{marginLeft: 20}}
-                    type='font-awesome'
-                    onPress={() => this.createExam()}/>
-                </Text>
                 <View style={{padding: 15}}>
                     {this.state.exams.map((exam, index) => (
                         <ListItem

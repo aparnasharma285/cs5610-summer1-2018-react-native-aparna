@@ -178,7 +178,11 @@ class ExamWidget extends Component {
 
         return (
             <ScrollView style={{padding: 15}}>
-                <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>Essay <Icon
+                <View style={{flexDirection: 'row', marginTop:10}}>
+                    <View style={{width: 250}}>
+                        <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>Essay </Text></View>
+                    <View style={{width: 100}}>
+                <Icon
                     raised
                     reverse
                     name='plus-circle'
@@ -186,8 +190,8 @@ class ExamWidget extends Component {
                     size={50}
                     style={{marginLeft: 20}}
                     type='font-awesome'
-                    onPress={() => this.createEssayQuestion()}/>
-                </Text>
+                    onPress={() => this.createEssayQuestion()}/></View></View>
+
                 <View style={{padding: 15}}>
                     {this.state.essays.map((question, index) => (
                         <ListItem
@@ -211,7 +215,11 @@ class ExamWidget extends Component {
                 </View>
 
 
-                <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>True or False <Icon
+                <View style={{flexDirection: 'row', marginTop:10}}>
+                    <View style={{width: 250}}>
+                        <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>True or False </Text></View>
+                    <View style={{width: 100}}>
+                <Icon
                     raised
                     reverse
                     name='plus-circle'
@@ -219,8 +227,8 @@ class ExamWidget extends Component {
                     size={50}
                     style={{marginLeft: 20}}
                     type='font-awesome'
-                    onPress={() => this.createTrueOrFalseQuestion()}/>
-                </Text>
+                    onPress={() => this.createTrueOrFalseQuestion()}/></View></View>
+
                 <View style={{padding: 15}}>
                     {this.state.trueFalses.map((question, index) => (
                         <ListItem
@@ -243,7 +251,11 @@ class ExamWidget extends Component {
                     ))}
                 </View>
 
-                <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>Multiple Choice <Icon
+                <View style={{flexDirection: 'row', marginTop:10}}>
+                    <View style={{width: 250}}>
+                        <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>Multiple Choice </Text></View>
+                    <View style={{width: 100}}>
+                <Icon
                     raised
                     reverse
                     name='plus-circle'
@@ -251,8 +263,8 @@ class ExamWidget extends Component {
                     size={50}
                     style={{marginLeft: 20}}
                     type='font-awesome'
-                    onPress={() => this.createMultipleChoiceQuestion()}/>
-                </Text>
+                    onPress={() => this.createMultipleChoiceQuestion()}/></View></View>
+
                 <View style={{padding: 15}}>
                     {this.state.choices.map((question, index) => (
                         <ListItem
@@ -275,7 +287,11 @@ class ExamWidget extends Component {
                     ))}
                 </View>
 
-                <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>Fill in the blanks <Icon
+                <View style={{flexDirection: 'row', marginTop:10}}>
+                    <View style={{width: 250}}>
+                        <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>Fill in the blanks </Text></View>
+                    <View style={{width: 100}}>
+                <Icon
                     raised
                     reverse
                     name='plus-circle'
@@ -283,8 +299,8 @@ class ExamWidget extends Component {
                     size={50}
                     style={{marginLeft: 20}}
                     type='font-awesome'
-                    onPress={() => this.createFillInTheBlanksQuestion()}/>
-                </Text>
+                    onPress={() => this.createFillInTheBlanksQuestion()}/></View></View>
+
                 <View style={{padding: 15}}>
                     {this.state.blanks.map((question, index) => (
                         <ListItem
