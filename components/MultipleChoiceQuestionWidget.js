@@ -18,6 +18,7 @@ class MultipleChoiceQuestionWidget extends Component {
             questionId: '',
             options: 'No option Available',
             correctOption: '',
+            examName:''
         }
 
         this.updateQuestion = this.updateQuestion.bind(this);
@@ -29,10 +30,18 @@ class MultipleChoiceQuestionWidget extends Component {
 
     updateQuestion() {
 
+        fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/" + this.state.widgetId), {
+            body: JSON.stringify({
+                'name':this.state.examName
+            }),
+            headers: {'Content-Type': 'application/json'},
+            method: 'PUT'
+        })
+
         fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/choice/" + this.state.questionId),
             {
                 body: JSON.stringify({
-                    'id': this.state.widgetId,
+                    'id': this.state.questionId,
                     'instructions': this.state.instructions,
                     'title': this.state.title,
                     'description': this.state.description,
@@ -54,6 +63,11 @@ class MultipleChoiceQuestionWidget extends Component {
 
     }
 
+    findExamById(examId){
+        return fetch(("https://cs5610-react-native-aparna.herokuapp.com//api/exam/EID").replace('EID', examId))
+            .then(response => (response.json()))
+    }
+
     componentDidMount() {
         const {navigation} = this.props;
         const widgetId = navigation.getParam("widgetId");
@@ -71,6 +85,8 @@ class MultipleChoiceQuestionWidget extends Component {
             options: question.options,
             correctOption: question.correctOption
         }))
+
+        this.findExamById(widgetId).then((exam) => this.setState({examName:exam.name}))
     }
 
 
@@ -88,6 +104,12 @@ class MultipleChoiceQuestionWidget extends Component {
 
         return (
             <ScrollView>
+
+                <FormLabel>Exam Name</FormLabel>
+                <FormInput value={this.state.examName} onChangeText={
+                    text => this.updateForm({examName: text})
+                }/>
+
 
                 <FormLabel>Title</FormLabel>
                 <FormInput value={this.state.title} onChangeText={
@@ -157,9 +179,12 @@ class MultipleChoiceQuestionWidget extends Component {
                                 radio_props={radioItems}
                                 initial={0}
                                 style={{alignItems: 'flex-start'}}
-                                onPress={() => {
-                                    Alert.alert("Read only Field !")
-                                }}/>
+                                onPress={() => {}}/>
+                            <Text>&nbsp;</Text>
+                            <View style={{flexDirection: 'row'}}>
+                            <Button  buttonStyle={{borderRadius:5, width:90}} backgroundColor="#f44e42" color="white" title="Cancel" onPress={() => {}}/>
+                            <Button buttonStyle={{borderRadius:5, width:90}}backgroundColor="#419af4" color="white" title="Submit" onPress={() => {}}/>
+                            </View>
                         </Card>
                 </Card>
                 <View style={{padding: 15}}></View>

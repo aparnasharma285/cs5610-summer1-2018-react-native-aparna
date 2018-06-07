@@ -15,7 +15,8 @@ class FillInTheBlanksQuestionWidget extends Component {
             points: '',
             widgetId: '',
             questionId: '',
-            variables: ''
+            variables: '',
+            examName:''
 
         }
 
@@ -29,10 +30,20 @@ class FillInTheBlanksQuestionWidget extends Component {
 
 
     updateQuestion() {
+
+
+        fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/" + this.state.widgetId), {
+            body: JSON.stringify({
+                'name':this.state.examName
+            }),
+            headers: {'Content-Type': 'application/json'},
+            method: 'PUT'
+        })
+
         fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/blanks/" + this.state.questionId),
             {
                 body: JSON.stringify({
-                    'id': this.state.widgetId,
+                    'id': this.state.questionId,
                     'instructions': this.state.instructions,
                     'title': this.state.title,
                     'description': this.state.description,
@@ -73,10 +84,15 @@ class FillInTheBlanksQuestionWidget extends Component {
 
     render() {
 
-        var equation = this.state.variables.replace(/\[.*?]/,'<FormInput></FormInput>');
+        var equations = this.state.variables.split(/\[.*?]/);
 
         return (
             <ScrollView>
+
+                <FormLabel>Exam Name</FormLabel>
+                <FormInput value={this.state.examName} onChangeText={
+                    text => this.updateForm({examName: text})
+                }/>
 
                 <FormLabel>Title</FormLabel>
                 <FormInput value={this.state.title} onChangeText={
@@ -91,7 +107,6 @@ class FillInTheBlanksQuestionWidget extends Component {
                     onChangeText={
                         text => this.updateForm({points: text})
                     }/>
-
 
 
                 <FormLabel>Description</FormLabel>
@@ -110,9 +125,7 @@ class FillInTheBlanksQuestionWidget extends Component {
                 <FormInput value={this.state.variables} onChangeText={
                     text => this.updateForm({variables: text})
                 }/>
-
-
-
+                <View style={{padding: 15}}></View>
                 <Button backgroundColor="green" color="white" title="Save"
                         onPress={() => this.updateQuestion(this.state.questionId)}/>
                 <Text>&nbsp;</Text>
@@ -132,9 +145,18 @@ class FillInTheBlanksQuestionWidget extends Component {
                     </View>
                     <Text style={{padding: 15}}>{this.state.description}</Text>
 
-                    {equation}
+
+                    <Text>&nbsp;</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <Button buttonStyle={{borderRadius: 5, width: 90}} backgroundColor="#f44e42" color="white"
+                                title="Cancel" onPress={() => {
+                        }}/>
+                        <Button buttonStyle={{borderRadius: 5, width: 90}} backgroundColor="#419af4" color="white"
+                                title="Submit" onPress={() => {
+                        }}/>
+                    </View>
                 </Card>
-                <View style={{padding:15}}></View>
+                <View style={{padding: 15}}></View>
             </ScrollView>
         )
     }

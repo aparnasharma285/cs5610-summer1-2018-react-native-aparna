@@ -82,18 +82,11 @@ class AssignmentWidget extends Component {
                 <FormInput value={this.state.name} onChangeText={
                     text => this.updateForm({name: text})
                 }/>
-                <FormValidationMessage>
-                    Name is required
-                </FormValidationMessage>
 
                 <FormLabel>Title</FormLabel>
                 <FormInput value={this.state.title} onChangeText={
                     text => this.updateForm({title: text})
                 }/>
-                <FormValidationMessage>
-                    Title is required
-                </FormValidationMessage>
-
 
                 <FormLabel>Points</FormLabel>
                 <FormInput
@@ -102,19 +95,13 @@ class AssignmentWidget extends Component {
                     onChangeText={
                         text => this.updateForm({points: text})
                     }/>
-                <FormValidationMessage>
-                    points is required
-                </FormValidationMessage>
-
 
                 <FormLabel>Description</FormLabel>
                 <FormInput value={this.state.description} onChangeText={
                     text => this.updateForm({description: text})
                 }/>
-                <FormValidationMessage>
-                    Description is required
-                </FormValidationMessage>
 
+                <View style={{padding:10}}></View>
 
                 <Button backgroundColor="green" color="white" title="Save"
                         onPress={() => this.updateAssignment(this.state.widgetId)}/>
@@ -126,7 +113,7 @@ class AssignmentWidget extends Component {
 
                     <Text h3 style={{padding: 15}}>Preview</Text>
                     <View style={{flexDirection: 'row', padding: 15}}>
-                        <Text h4> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
+                        <Text h4> {this.state.name}</Text><Text h4> {this.state.points}pts</Text>
                     </View>
 
                     <Text style={{padding: 15}}>{this.state.description}</Text>
@@ -137,11 +124,26 @@ class AssignmentWidget extends Component {
                                    style={{borderRadius: 4, borderWidth: 1, marginLeft: 10, marginRight: 10}}/>
                     </View>
                     <Text h4 style={{padding: 15}}>Upload File</Text>
+                    <Card>
+                        <View style={{flexDirection: 'row'}}>
+                        <Button buttonStyle={{width:100,marginLeft:0}} title="Choose File" onPress={()=>{}}/>
+                            <Text>No file chosen</Text>
+                        </View>
+                    </Card>
+
                     <FormInput editable={false} style={{border: 2}}/>
 
                     <Text editable={false} style={{padding: 15}} h4> Submit a link</Text>
                     <FormInput editable={false} style={{border: 2, marginBottom: 10}}/>
+
+                    <Text>&nbsp;</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <Button  buttonStyle={{borderRadius:5, width:90}} backgroundColor="#f44e42" color="white" title="Cancel" onPress={() => {}}/>
+                        <Button buttonStyle={{borderRadius:5, width:90}}backgroundColor="#419af4" color="white" title="Submit" onPress={() => {}}/>
+                    </View>
+
                 </Card>
+                <View style={{padding:15}}></View>
             </ScrollView>
         )
     }

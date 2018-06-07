@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {View, Alert, ScrollView} from 'react-native'
-import {Text, ListItem} from 'react-native-elements'
+import {Text, ListItem,Button} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class ExamWidget extends Component {

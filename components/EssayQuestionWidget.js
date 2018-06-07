@@ -14,7 +14,8 @@ class EssayQuestionWidget extends Component {
             description: '',
             points: '',
             widgetId: '',
-            questionId: ''
+            questionId: '',
+            examName:''
 
         }
 
@@ -27,10 +28,20 @@ class EssayQuestionWidget extends Component {
     }
 
     updateQuestion() {
+
+
+        fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/" + this.state.widgetId), {
+            body: JSON.stringify({
+                'name':this.state.examName
+            }),
+            headers: {'Content-Type': 'application/json'},
+            method: 'PUT'
+        })
+
         fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/essay/" + this.state.questionId),
             {
                 body: JSON.stringify({
-                    'id': this.state.widgetId,
+                    'id': this.state.questionId,
                     'instructions': this.state.instructions,
                     'title': this.state.title,
                     'description': this.state.description,
@@ -72,6 +83,11 @@ class EssayQuestionWidget extends Component {
     render() {
         return (
             <ScrollView>
+
+                <FormLabel>Exam Name</FormLabel>
+                <FormInput value={this.state.examName} onChangeText={
+                    text => this.updateForm({examName: text})
+                }/>
 
                 <FormLabel>Title</FormLabel>
                 <FormInput value={this.state.title} onChangeText={
@@ -127,6 +143,12 @@ class EssayQuestionWidget extends Component {
                                        marginRight: 10,
                                        marginBottom: 10
                                    }}/>
+
+                        <Text>&nbsp;</Text>
+                        <View style={{flexDirection: 'row'}}>
+                            <Button  buttonStyle={{borderRadius:5, width:90}} backgroundColor="#f44e42" color="white" title="Cancel" onPress={() => {}}/>
+                            <Button buttonStyle={{borderRadius:5, width:90}}backgroundColor="#419af4" color="white" title="Submit" onPress={() => {}}/>
+                        </View>
                     </View>
                 </Card>
                 <View style={{padding: 15}}></View>
