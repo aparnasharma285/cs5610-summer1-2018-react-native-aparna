@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, TextInput, ScrollView, Alert,Keyboard} from 'react-native'
+import {View, TextInput, ScrollView, Alert, Keyboard} from 'react-native'
 import {FormLabel, FormInput, FormValidationMessage, Button, Text, Card} from 'react-native-elements'
 
 
@@ -9,7 +9,7 @@ class EssayQuestionWidget extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            instructions:'',
+            instructions: '',
             title: '',
             description: '',
             points: '',
@@ -18,7 +18,7 @@ class EssayQuestionWidget extends Component {
 
         }
 
-        this.updateQuestion= this.updateQuestion.bind(this);
+        this.updateQuestion = this.updateQuestion.bind(this);
 
     }
 
@@ -31,7 +31,7 @@ class EssayQuestionWidget extends Component {
         fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/essay/" + this.state.questionId),
             {
                 body: JSON.stringify({
-                    'id':this.state.widgetId,
+                    'id': this.state.widgetId,
                     'instructions': this.state.instructions,
                     'title': this.state.title,
                     'description': this.state.description,
@@ -71,9 +71,8 @@ class EssayQuestionWidget extends Component {
     }
 
     render() {
-
         return (
-            <ScrollView>
+            <ScrollView style={{padding: 15, marginBottom: 20}}>
 
                 <FormLabel>Title</FormLabel>
                 <FormInput value={this.state.title} onChangeText={
@@ -119,7 +118,7 @@ class EssayQuestionWidget extends Component {
                 <Button backgroundColor="red" color="white" title="Cancel" onPress={() => this.props.navigation
                     .navigate("ExamWidget", {widgetId: this.state.widgetId})}/>
 
-                <Card style={{padding: 15}}>
+                <Card style={{padding: 10, marginBottom: 10}}>
 
                     <Text h3 style={{padding: 15}}>Preview</Text>
                     <View style={{flexDirection: 'row', padding: 15}}>
@@ -131,7 +130,13 @@ class EssayQuestionWidget extends Component {
                     <View>
                         <Text h4 style={{padding: 15}}>Essay Answer</Text>
                         <TextInput editable={false} multiline={true} numberOfLines={5}
-                                   style={{borderRadius: 4, borderWidth: 1, marginLeft: 10, marginRight: 10, marginBottom:10}}/>
+                                   style={{
+                                       borderRadius: 4,
+                                       borderWidth: 1,
+                                       marginLeft: 10,
+                                       marginRight: 10,
+                                       marginBottom: 10
+                                   }}/>
                     </View>
                 </Card>
             </ScrollView>
@@ -139,4 +144,4 @@ class EssayQuestionWidget extends Component {
     }
 }
 
-    export default EssayQuestionWidget
+export default EssayQuestionWidget

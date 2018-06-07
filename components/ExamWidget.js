@@ -130,7 +130,8 @@ class ExamWidget extends Component {
                 body: JSON.stringify(
                     {
                         'id': this.state.trueFalses.length + 1,
-                        'title': 'default True or False Type Question'
+                        'title': 'default True or False Type Question',
+                        'isTrue': 'false'
                     }
                 ),
                 headers: {'Content-Type': 'application/json'},
@@ -146,7 +147,8 @@ class ExamWidget extends Component {
                 body: JSON.stringify(
                     {
                         'id': this.state.choices.length + 1,
-                        'title': 'default MCQ Type Question'
+                        'title': 'default MCQ Type Question',
+                        'options': 'Not Available'
                     }
                 ),
                 headers: {'Content-Type': 'application/json'},
@@ -162,7 +164,8 @@ class ExamWidget extends Component {
                 body: JSON.stringify(
                     {
                         'id': this.state.blanks.length + 1,
-                        'title': 'default Fill in the Blank Type Question'
+                        'title': 'default Fill in the Blank Type Question',
+                        'variables': 'not available'
                     }
                 ),
                 headers: {'Content-Type': 'application/json'},
