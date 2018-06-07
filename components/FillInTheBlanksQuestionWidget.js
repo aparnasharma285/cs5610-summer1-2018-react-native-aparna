@@ -4,7 +4,7 @@ import {FormLabel, FormInput, FormValidationMessage, Button, Text, Card} from 'r
 
 
 class FillInTheBlanksQuestionWidget extends Component {
-    static navigationOptions = {title: 'Fill in the Blanks Question Editor'}
+    static navigationOptions = {title: 'Fill in the Blanks Question'}
 
     constructor(props) {
         super(props)
@@ -132,12 +132,13 @@ class FillInTheBlanksQuestionWidget extends Component {
 
                     <Text h3 style={{padding: 15}}>Preview</Text>
                     <View style={{flexDirection: 'row', padding: 15}}>
-                        <Text h4> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
+                        <Text h4 style={{flex: 1, flexWrap: 'wrap'}}> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
                     </View>
 
                     <Text style={{padding: 15}}>{this.state.description}</Text>
 
                 </Card>
+                <View style={{padding:15}}></View>
             </ScrollView>
         )
     }

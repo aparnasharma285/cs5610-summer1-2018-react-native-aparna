@@ -42,7 +42,7 @@ class ExamWidget extends Component {
     }
 
 
-    componentWillReceiveProps(newProps){
+    componentWillReceiveProps(newProps) {
 
         const {navigation} = this.props;
         const topicId = navigation.getParam("topicId")
@@ -62,7 +62,7 @@ class ExamWidget extends Component {
 
     findEssayQuestions(widgetId) {
 
-        return fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/WID/essay").replace('WID',widgetId))
+        return fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/WID/essay").replace('WID', widgetId))
             .then(response => (response.json()))
             .then(essays => this.setState({
                 essays: essays
@@ -71,7 +71,7 @@ class ExamWidget extends Component {
 
     findBlankQuestions(widgetId) {
 
-        return fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/WID/blanks").replace('WID',widgetId))
+        return fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/WID/blanks").replace('WID', widgetId))
             .then(response => (response.json()))
             .then(blanks => this.setState({
                 blanks: blanks
@@ -80,7 +80,7 @@ class ExamWidget extends Component {
 
     findChoicesQuestions(widgetId) {
 
-        return fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/WID/choice").replace('WID',widgetId))
+        return fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/WID/choice").replace('WID', widgetId))
             .then(response => (response.json()))
             .then(choices => this.setState({
                 choices: choices
@@ -89,7 +89,7 @@ class ExamWidget extends Component {
 
     findTrueFalseQuestions(widgetId) {
 
-        return fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/WID/truefalse").replace('WID',widgetId))
+        return fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/WID/truefalse").replace('WID', widgetId))
             .then(response => (response.json()))
             .then(trueFalses => this.setState({
                 trueFalses: trueFalses
@@ -178,7 +178,7 @@ class ExamWidget extends Component {
 
         return (
             <ScrollView style={{padding: 15}}>
-                <Text h3>Essay Type<Icon
+                <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>Essay <Icon
                     raised
                     reverse
                     name='plus-circle'
@@ -203,69 +203,15 @@ class ExamWidget extends Component {
                             key={index}
                             title={question.title}
                             onPress={() => this.props.navigation
-                                .navigate("EssayQuestionWidget", {widgetId: this.state.widgetId, questionId: question.id})}/>
+                                .navigate("EssayQuestionWidget", {
+                                    widgetId: this.state.widgetId,
+                                    questionId: question.id
+                                })}/>
                     ))}
                 </View>
 
-                <Text h3>Multiple Choice Type <Icon
-                    raised
-                    reverse
-                    name='plus-circle'
-                    color='#517fa4'
-                    size={50}
-                    style={{marginLeft: 20}}
-                    type='font-awesome'
-                    onPress={() => this.createMultipleChoiceQuestion()}/>
-                </Text>
-                <View style={{padding: 15}}>
-                    {this.state.choices.map((question, index) => (
-                        <ListItem
-                            leftIcon={<Icon
-                                raised
-                                reverse
-                                name='trash'
-                                size={30}
-                                style={{paddingRight: 20}}
-                                type='font-awesome'
-                                onPress={() => this.deleteQuestion(question.id)}
-                            />}
-                            key={index}
-                            title={question.title}
-                            onPress={() => this.props.navigation
-                                .navigate("MultipleChoiceQuestionWidget", {widgetId: this.state.widgetId, questionId: question.id})}/>
-                    ))}
-                </View>
 
-                <Text h3>Fill in the blanks Type <Icon
-                    raised
-                    reverse
-                    name='plus-circle'
-                    color='#517fa4'
-                    size={50}
-                    style={{marginLeft: 20}}
-                    type='font-awesome'
-                    onPress={() => this.createFillInTheBlanksQuestion()}/>
-                </Text>
-                <View style={{padding: 15}}>
-                    {this.state.blanks.map((question, index) => (
-                        <ListItem
-                            leftIcon={<Icon
-                                raised
-                                reverse
-                                name='trash'
-                                size={30}
-                                style={{paddingRight: 20}}
-                                type='font-awesome'
-                                onPress={() => this.deleteQuestion(question.id)}
-                            />}
-                            key={index}
-                            title={question.title}
-                            onPress={() => this.props.navigation
-                                .navigate("FillInTheBlanksQuestionWidget", {widgetId: this.state.widgetId, questionId: question.id})}/>
-                    ))}
-                </View>
-
-                <Text h3>True or False Type<Icon
+                <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>True or False <Icon
                     raised
                     reverse
                     name='plus-circle'
@@ -290,7 +236,74 @@ class ExamWidget extends Component {
                             key={index}
                             title={question.title}
                             onPress={() => this.props.navigation
-                                .navigate("TrueOrFalseQuestionWidget", {widgetId: this.state.widgetId, questionId: question.id})}/>
+                                .navigate("TrueOrFalseQuestionWidget", {
+                                    widgetId: this.state.widgetId,
+                                    questionId: question.id
+                                })}/>
+                    ))}
+                </View>
+
+                <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>Multiple Choice <Icon
+                    raised
+                    reverse
+                    name='plus-circle'
+                    color='#517fa4'
+                    size={50}
+                    style={{marginLeft: 20}}
+                    type='font-awesome'
+                    onPress={() => this.createMultipleChoiceQuestion()}/>
+                </Text>
+                <View style={{padding: 15}}>
+                    {this.state.choices.map((question, index) => (
+                        <ListItem
+                            leftIcon={<Icon
+                                raised
+                                reverse
+                                name='trash'
+                                size={30}
+                                style={{paddingRight: 20}}
+                                type='font-awesome'
+                                onPress={() => this.deleteQuestion(question.id)}
+                            />}
+                            key={index}
+                            title={question.title}
+                            onPress={() => this.props.navigation
+                                .navigate("MultipleChoiceQuestionWidget", {
+                                    widgetId: this.state.widgetId,
+                                    questionId: question.id
+                                })}/>
+                    ))}
+                </View>
+
+                <Text h3 style={{flex: 1, flexWrap: 'wrap'}}>Fill in the blanks <Icon
+                    raised
+                    reverse
+                    name='plus-circle'
+                    color='#517fa4'
+                    size={50}
+                    style={{marginLeft: 20}}
+                    type='font-awesome'
+                    onPress={() => this.createFillInTheBlanksQuestion()}/>
+                </Text>
+                <View style={{padding: 15}}>
+                    {this.state.blanks.map((question, index) => (
+                        <ListItem
+                            leftIcon={<Icon
+                                raised
+                                reverse
+                                name='trash'
+                                size={30}
+                                style={{paddingRight: 20}}
+                                type='font-awesome'
+                                onPress={() => this.deleteQuestion(question.id)}
+                            />}
+                            key={index}
+                            title={question.title}
+                            onPress={() => this.props.navigation
+                                .navigate("FillInTheBlanksQuestionWidget", {
+                                    widgetId: this.state.widgetId,
+                                    questionId: question.id
+                                })}/>
                     ))}
                 </View>
             </ScrollView>

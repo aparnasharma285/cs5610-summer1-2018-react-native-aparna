@@ -5,7 +5,7 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 
 
 class TrueOrFalseQuestionWidget extends Component {
-    static navigationOptions = {title: 'True False Question Editor'}
+    static navigationOptions = {title: 'True False Question'}
 
     constructor(props) {
         super(props)
@@ -77,7 +77,7 @@ class TrueOrFalseQuestionWidget extends Component {
 
 
         var radio_props = [
-            {label: 'True', value: 0},
+            {label: 'True ', value: 0},
             {label: 'False', value: 1}
         ];
         return (
@@ -133,22 +133,20 @@ class TrueOrFalseQuestionWidget extends Component {
 
                     <Text h3 style={{padding: 15}}>Preview</Text>
                     <View style={{flexDirection: 'row', padding: 15}}>
-                        <Text h4> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
+                        <Text h4 style={{flex: 1, flexWrap: 'wrap'}}> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
                     </View>
 
                     <Text style={{padding: 15}}>{this.state.description}</Text>
 
-                    <View style={{padding:15, marginBottom:15}}>
+                    <View style={{padding: 15, marginBottom: 15}}>
                         <RadioForm
                             radio_props={radio_props}
                             initial={0}
-                            onPress={(value) => {
-                                this.setState({value: value})
-                            }}
-                        />
+                            formHorizontal={true}
+                            onPress={() => {Alert.alert("Read only Field !")}}/>
                     </View>
-
                 </Card>
+                <View style={{padding:15}}></View>
             </ScrollView>
         )
     }

@@ -122,7 +122,8 @@ class EssayQuestionWidget extends Component {
 
                     <Text h3 style={{padding: 15}}>Preview</Text>
                     <View style={{flexDirection: 'row', padding: 15}}>
-                        <Text h4> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
+                        <Text h4 style={{flex: 1, flexWrap: 'wrap'}}> {this.state.title} </Text><Text
+                        h4> {this.state.points}pts</Text>
                     </View>
 
                     <Text style={{padding: 15}}>{this.state.description}</Text>
@@ -139,6 +140,7 @@ class EssayQuestionWidget extends Component {
                                    }}/>
                     </View>
                 </Card>
+                <View style={{padding: 15}}></View>
             </ScrollView>
         )
     }

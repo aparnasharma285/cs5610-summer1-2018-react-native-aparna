@@ -5,7 +5,7 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 
 
 class MultipleChoiceQuestionWidget extends Component {
-    static navigationOptions = {title: 'Multiple Choice Question Editor'}
+    static navigationOptions = {title: 'Multiple Choice Question'}
 
     constructor(props) {
         super(props)
@@ -77,6 +77,14 @@ class MultipleChoiceQuestionWidget extends Component {
     render() {
 
         var optionList = this.state.options.split('\n');
+        let radioItems = []
+        optionList.map((item, index) => radioItems.push({'label': item, value: index}))
+
+        const pickerItems = optionList.map((option, index) => {
+            return (
+                <Picker.Item key={index} label={option} value={index}/>
+            )
+        })
 
         return (
             <ScrollView style={{padding: 10, marginBottom: 10}}>
@@ -119,32 +127,51 @@ class MultipleChoiceQuestionWidget extends Component {
                 </FormValidationMessage>
 
                 <FormLabel>Options</FormLabel>
-                <TextInput multiline={true} numberOfLines={6} value={this.state.options} onChangeText={
-                    text => this.updateForm({options: text})
-                }/>
+                <TextInput style={{marginLeft: 10}} multiline={true} numberOfLines={6} value={this.state.options}
+                           onChangeText={
+                               text => this.updateForm({options: text})
+                           }/>
                 <FormValidationMessage>
                     Options is required
                 </FormValidationMessage>
 
                 <FormLabel>Correct Option</FormLabel>
-
-
+                <Card>
+                <Picker selectedValue={this.state.correctOption}
+                        onValueChange={(itemIndex) => this.updateForm({correctOption: itemIndex})}>
+                    {pickerItems}
+                </Picker>
+                </Card>
+                <Text>&nbsp;</Text>
                 <Button backgroundColor="green" color="white" title="Save"
                         onPress={() => this.updateQuestion(this.state.questionId)}/>
                 <Text>&nbsp;</Text>
                 <Button backgroundColor="red" color="white" title="Cancel" onPress={() => this.props.navigation
                     .navigate("ExamWidget", {widgetId: this.state.widgetId})}/>
 
-                <Card style={{padding: 15, marginBottom: 10}}>
+                <Card style={{padding: 15, marginBottom: 20}}>
 
                     <Text h3 style={{padding: 15}}>Preview</Text>
-                    <View style={{flexDirection: 'row', padding: 15}}>
-                        <Text h4> {this.state.title} </Text><Text h4> {this.state.points}pts</Text>
+                    <View style={{flexDirection: 'row', flex: 1}}>
+                        <Text h4 style={{flex: 1, flexWrap: 'wrap'}}>{this.state.title}</Text><Text
+                        h4>{this.state.points}pts</Text>
                     </View>
 
                     <Text style={{padding: 15}}>{this.state.description}</Text>
 
+                    <View style={{padding: 15, marginBottom: 15}}>
+
+                    </View>
+
+                    <Card>
+                        <RadioForm
+                            radio_props={radioItems}
+                            initial={0}
+                            style={{alignItems: 'flex-start'}}
+                            onPress={() => {Alert.alert("Read only Field !")}}/>
+                    </Card>
                 </Card>
+                <View style={{padding:15}}></View>
             </ScrollView>
         )
     }
