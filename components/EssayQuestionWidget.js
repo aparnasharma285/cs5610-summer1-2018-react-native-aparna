@@ -78,6 +78,13 @@ class EssayQuestionWidget extends Component {
             points: question.points,
             description: question.description
         }))
+
+        this.findExamById(widgetId).then((exam) => this.setState({examName:exam.name}))
+    }
+
+    findExamById(examId){
+        return fetch(("https://cs5610-react-native-aparna.herokuapp.com//api/exam/EID").replace('EID', examId))
+            .then(response => (response.json()))
     }
 
     render() {

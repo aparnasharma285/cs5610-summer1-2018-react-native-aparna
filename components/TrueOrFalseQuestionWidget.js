@@ -65,6 +65,11 @@ class TrueOrFalseQuestionWidget extends Component {
 
     }
 
+    findExamById(examId){
+        return fetch(("https://cs5610-react-native-aparna.herokuapp.com//api/exam/EID").replace('EID', examId))
+            .then(response => (response.json()))
+    }
+
     componentDidMount() {
         const {navigation} = this.props;
         const widgetId = navigation.getParam("widgetId");
@@ -81,6 +86,8 @@ class TrueOrFalseQuestionWidget extends Component {
             description: question.description,
             isTrue: question.isTrue
         }))
+
+        this.findExamById(widgetId).then((exam) => this.setState({examName:exam.name}))
     }
 
 

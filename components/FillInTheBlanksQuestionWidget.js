@@ -16,7 +16,7 @@ class FillInTheBlanksQuestionWidget extends Component {
             widgetId: '',
             questionId: '',
             variables: '',
-            examName:''
+            examName: ''
 
         }
 
@@ -34,7 +34,7 @@ class FillInTheBlanksQuestionWidget extends Component {
 
         fetch(("https://cs5610-react-native-aparna.herokuapp.com/api/exam/" + this.state.widgetId), {
             body: JSON.stringify({
-                'name':this.state.examName
+                'name': this.state.examName
             }),
             headers: {'Content-Type': 'application/json'},
             method: 'PUT'
@@ -64,6 +64,11 @@ class FillInTheBlanksQuestionWidget extends Component {
 
     }
 
+    findExamById(examId){
+        return fetch(("https://cs5610-react-native-aparna.herokuapp.com//api/exam/EID").replace('EID', examId))
+            .then(response => (response.json()))
+    }
+
     componentDidMount() {
         const {navigation} = this.props;
         const widgetId = navigation.getParam("widgetId");
@@ -80,11 +85,13 @@ class FillInTheBlanksQuestionWidget extends Component {
             description: question.description,
             variables: question.variables
         }))
+
+        this.findExamById(widgetId).then((exam) => this.setState({examName:exam.name}))
     }
 
     render() {
 
-        var equations = this.state.variables.split(/\[.*?]/);
+        var equations = this.state.variables.match(/\[(.*?)\]/);
 
         return (
             <ScrollView>
@@ -144,7 +151,13 @@ class FillInTheBlanksQuestionWidget extends Component {
                         </View>
                     </View>
                     <Text style={{padding: 15}}>{this.state.description}</Text>
-
+                    {equations.map((item, index) => {
+                            <View style={{flexDirection: 'row'}}>
+                                <Text>item</Text>
+                                <FormInput></FormInput>
+                            </View>
+                        }
+                    )}
 
                     <Text>&nbsp;</Text>
                     <View style={{flexDirection: 'row'}}>
