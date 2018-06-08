@@ -15,7 +15,7 @@ class FillInTheBlanksQuestionWidget extends Component {
             points: '',
             widgetId: '',
             questionId: '',
-            variables: '',
+            variables: 'Not Available',
             examName: ''
 
         }
@@ -64,7 +64,7 @@ class FillInTheBlanksQuestionWidget extends Component {
 
     }
 
-    findExamById(examId){
+    findExamById(examId) {
         return fetch(("https://cs5610-react-native-aparna.herokuapp.com//api/exam/EID").replace('EID', examId))
             .then(response => (response.json()))
     }
@@ -86,12 +86,25 @@ class FillInTheBlanksQuestionWidget extends Component {
             variables: question.variables
         }))
 
-        this.findExamById(widgetId).then((exam) => this.setState({examName:exam.name}))
+        this.findExamById(widgetId).then((exam) => this.setState({examName: exam.name}))
     }
 
     render() {
+        var blankArr=[];
+        if (this.state.variables != null) {
 
-        var equations = this.state.variables.match(/\[(.*?)\]/);
+            var equations = this.state.variables.replace(/ *\[[^\]]*]/, ' BLANKS');
+            let abc = equations.split(" ").map((item,index) => {
+
+                if (item !='BLANKS') {
+
+                    var text = item;
+                    blankArr.push(<Text key={index}>{text} </Text>)
+                }
+                else
+                    blankArr.push(<FormInput key={index} inputStyle={{width: 60}}/>)
+            })
+        }
 
         return (
             <ScrollView>
@@ -151,14 +164,9 @@ class FillInTheBlanksQuestionWidget extends Component {
                         </View>
                     </View>
                     <Text style={{padding: 15}}>{this.state.description}</Text>
-                    {equations.map((item, index) => {
-                            <View style={{flexDirection: 'row'}}>
-                                <Text>item</Text>
-                                <FormInput></FormInput>
-                            </View>
-                        }
-                    )}
-
+                    <View style={{flexWrap:'wrap',flexDirection:'row'}}>
+                        {blankArr}
+                    </View>
                     <Text>&nbsp;</Text>
                     <View style={{flexDirection: 'row'}}>
                         <Button buttonStyle={{borderRadius: 5, width: 90}} backgroundColor="#f44e42" color="white"
