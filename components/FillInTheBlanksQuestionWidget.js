@@ -93,7 +93,7 @@ class FillInTheBlanksQuestionWidget extends Component {
         var blankArr=[];
         if (this.state.variables != null) {
 
-            var equations = this.state.variables.replace(/ *\[[^\]]*]/, ' BLANKS');
+            var equations = this.state.variables.replace(/ *\[[^\]]*]/g,' BLANKS');
             let abc = equations.split(" ").map((item,index) => {
 
                 if (item !='BLANKS') {
